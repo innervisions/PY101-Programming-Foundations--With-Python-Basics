@@ -49,7 +49,6 @@ while True:
             output = float(number1) / float(number2)
 
     prompt(f"{MESSAGES['result']} {output}")
-    
     prompt(MESSAGES['continue'])
     answer = input()
     if answer and answer[0].lower() != 'y':
