@@ -15,23 +15,23 @@ while True:
     prompt('Please enter the loan amount in dollars:')
     loan_amount = input()
     while invalid_number(loan_amount):
-            prompt('That is not a valid amount.')
-            prompt('Please enter the loan amount in dollars:')
-            loan_amount = input()
-            
+        prompt('That is not a valid amount.')
+        prompt('Please enter the loan amount in dollars:')
+        loan_amount = input()
+
     prompt('Please enter the APR in %:')
     apr = input()
     while invalid_number(apr):
-            prompt('That is not a valid APR.')
-            prompt('Please enter the APR in %:')
-            apr = input()
-            
+        prompt('That is not a valid APR.')
+        prompt('Please enter the APR in %:')
+        apr = input()
+
     prompt('Please enter the loan duration in months:')
     duration = input()
     while invalid_number(duration):
-            prompt('That is not a valid duration.')
-            prompt('Please enter the loan duration in months:')
-            duration = input()
+        prompt('That is not a valid duration.')
+        prompt('Please enter the loan duration in months:')
+        duration = input()
 
     loan_amount = float(loan_amount)
     apr = float(apr)
