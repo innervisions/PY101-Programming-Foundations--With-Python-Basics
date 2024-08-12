@@ -37,7 +37,10 @@ while True:
     apr = float(apr)
     duration = float(duration)
     monthly_interest_rate = apr / 12 * .01
-    monthly_payment = loan_amount * (monthly_interest_rate / (1 - (1 + monthly_interest_rate)**(-duration)))
+    monthly_payment = loan_amount * (
+        monthly_interest_rate /
+            (1 - (1 + monthly_interest_rate)**(-duration))
+    )
     prompt(f'Your monthly payment is ${round(monthly_payment, 2)}.')
 
     prompt("Another calculation?")
