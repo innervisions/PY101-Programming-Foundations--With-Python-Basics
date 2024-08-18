@@ -7,7 +7,7 @@ def prompt(message):
     print(f"==> {message}")
 
 
-def process_choice(player_choice: str):
+def process_choice(player_choice):
     player_choice = player_choice.lower()
     if player_choice.startswith("r"):
         return "rock"
