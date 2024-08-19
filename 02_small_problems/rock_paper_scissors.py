@@ -2,6 +2,22 @@ import random
 
 VALID_CHOICES = ["rock", "paper", "scissors", "lizard", "spock"]
 
+BEATS = {
+    "rock": ["scissors", "lizard"],
+    "paper": ["rock", "spock"],
+    "scissors": ["paper", "lizard"],
+    "lizard": ["paper", "spock"],
+    "spock": ["rock", "scissors"],
+}
+
+LOSES_TO = {
+    "rock": ["paper", "spock"],
+    "paper": ["scissors", "lizard"],
+    "scissors": ["rock", "spock"],
+    "lizard": ["rock", "scissors"],
+    "spock": ["paper", "lizard"],
+}
+
 
 def prompt(message):
     print(f"==> {message}")
@@ -21,49 +37,41 @@ def process_choice(player_choice: str) -> str:
         return "spock"
     return ""
 
+
 def display_winner(player, computer):
     prompt(f"You chose {player}, computer chose {computer}")
 
-    if (
-        (player == "rock" and computer in ["scissors", "lizard"])
-        or (player == "paper" and computer in ["rock", "spock"])
-        or (player == "scissors" and computer in ["paper", "lizard"])
-        or (player == "lizard" and computer in ["paper", "spock"])
-        or (player == "spock" and computer in ["rock", "scissors"])
-    ):
+    if computer in BEATS[player]:
         prompt("You win!")
-    elif (
-        (player == "rock" and computer in ["paper", "spock"])
-        or (player == "paper" and computer in ["scissors", "lizard"])
-        or (player == "scissors" and computer in ["rock", "spock"])
-        or (player == "lizard" and computer in ["rock", "scissors"])
-        or (player == "spock" and computer in ["paper", "lizard"])
-    ):
+    elif computer in LOSES_TO[player]:
         prompt("Computer wins!")
     else:
         prompt("It's a tie!")
 
 
-# Game loop
-while True:
-    prompt(f'Choose one: {', '.join(VALID_CHOICES)}')
-    choice = process_choice(input())
-
-    while choice not in VALID_CHOICES:
-        prompt("That's not a valid choice")
+def play_rps():
+    while True:
+        prompt(f'Choose one: {', '.join(VALID_CHOICES)}')
         choice = process_choice(input())
 
-    computer_choice = random.choice(VALID_CHOICES)
-    display_winner(choice, computer_choice)
+        while choice not in VALID_CHOICES:
+            prompt("That's not a valid choice")
+            choice = process_choice(input())
 
-    prompt("Do you want to play again (y/n)?")
-    answer = input().lower()
-    while True:
-        if answer.startswith("n") or answer.startswith("y"):
+        computer_choice = random.choice(VALID_CHOICES)
+        display_winner(choice, computer_choice)
+
+        prompt("Do you want to play again (y/n)?")
+        answer = input().lower()
+        while True:
+            if answer.startswith("n") or answer.startswith("y"):
+                break
+
+            prompt('Please enter "y" or "n".')
+            answer = input().lower()
+
+        if answer[0] == "n":
             break
 
-        prompt('Please enter "y" or "n".')
-        answer = input().lower()
 
-    if answer[0] == "n":
-        break
+play_rps()
