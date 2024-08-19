@@ -35,7 +35,6 @@ def process_choice(player_choice: str) -> str:
         return "lizard"
     if player_choice.startswith("sp"):
         return "spock"
-    
     return ""
 
 
